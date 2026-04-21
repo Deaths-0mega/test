@@ -123,7 +123,8 @@ app.post('/v1/chat/completions', async (req, res) => {
             'Authorization': `Bearer ${NIM_API_KEY}`, 
             'Content-Type': 'application/json' 
           },
-          validateStatus: (status) => status < 500
+          validateStatus: (status) => status < 500,
+          timeout: 30000  // 30 seconds for model test
         });
         
         if (testResponse.status >= 200 && testResponse.status < 300) {
@@ -169,7 +170,8 @@ app.post('/v1/chat/completions', async (req, res) => {
         'Content-Type': 'application/json'
       },
       responseType: stream ? 'stream' : 'json',
-      validateStatus: () => true
+      validateStatus: () => true,
+      timeout: 120000  // 120 seconds timeout for slow NVIDIA responses
     });
     
     // Check for errors
