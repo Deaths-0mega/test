@@ -171,7 +171,7 @@ app.post('/v1/chat/completions', async (req, res) => {
       },
       responseType: stream ? 'stream' : 'json',
       validateStatus: () => true,
-      timeout: 120000  // 120 seconds timeout for slow NVIDIA responses
+      timeout: 180000  // 180 seconds timeout for slow NVIDIA responses
     });
     
     // Check for errors
